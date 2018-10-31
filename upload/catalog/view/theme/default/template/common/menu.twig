@@ -6,8 +6,8 @@
       <div class="collapse navbar-collapse" id="narbar-menu">
         <ul class="navbar-nav">
           {% for category in categories %}
+            <li class="nav-item dropdown"><a href="{{ category.href }}" class="nav-link dropdown-toggle" title="{{ text_all }} {{ category.name }}">{{ category.name }}</a>
             {% if category.children %}
-              <li class="nav-item dropdown"><a href="{{ category.href }}" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ category.name }}</a>
                 <div class="dropdown-menu">
                   <div class="dropdown-inner">
                     {% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
@@ -21,8 +21,6 @@
                   <a href="{{ category.href }}" class="see-all">{{ text_all }} {{ category.name }}</a>
                 </div>
               </li>
-            {% else %}
-              <li class="nav-item"><a href="{{ category.href }}" class="nav-link">{{ category.name }}</a></li>
             {% endif %}
           {% endfor %}
         </ul>
